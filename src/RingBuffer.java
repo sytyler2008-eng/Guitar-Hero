@@ -3,6 +3,7 @@ import java.io.*;
 public class RingBuffer
 {
 	double[] buffer = new double[10];
+	int size = 0;
 	
 	public RingBuffer(int capacity)
 	{
