@@ -17,7 +17,7 @@ public class RingBuffer
 	{
 		for (int i = 0; i < buffer.length; i++)
 		{
-			if (buffer[i] == 0.0)
+			if (buffer[i] != 0.0)
 			{
 				size++;
 			}
@@ -53,9 +53,17 @@ public class RingBuffer
 		
 	}
 	
-	public double peek()
+	public double peek() //Tyler Sy
 	{
-		
+		double x = 0;
+		for (int i = 0; i < buffer.length; i++)
+		{
+			if (buffer[i] != 0.0)
+			{
+				x = buffer[i];
+			}
+		}
+		return x;
 	}
 	
 	public String toString()
