@@ -2,12 +2,12 @@ import java.io.*;
 
 public class RingBuffer
 {
-	double[] buffer = new double[10];
-	int size = 0;
+	double[] buffer;
+	int size;
 	
 	public RingBuffer(int capacity)
 	{
-		
+		this.buffer = new double[capacity];
 	}
 	
 	public int size()
