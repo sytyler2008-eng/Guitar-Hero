@@ -1,3 +1,5 @@
+//Tyler Sy and Logan Feistauer, CS3 K, 5th Period
+
 import java.io.*;
 
 public class RingBuffer
@@ -8,24 +10,45 @@ public class RingBuffer
 	public RingBuffer(int capacity)
 	{
 		this.buffer = new double[capacity];
+		this.size = 0;
 	}
 	
-	public int size()
+	public int size() //Tyler Sy
 	{
-		
+		for (int i = 0; i < buffer.length; i++)
+		{
+			if (buffer[i] == 0.0)
+			{
+				size++;
+			}
+		}
+		return size;
 	}
 	
-	public boolean isEmpty()
+	public boolean isEmpty() //Tyler Sy
 	{
-		
+		if (size == 0)
+		{
+			return true;
+		}
+		return false;
 	}
 	
-	public boolean isFull()
+	public boolean isFull() //Tyler Sy
 	{
-		
+		if (size == buffer.length)
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	public void enqueue(double x)
+	{
+		
+	}
+	
+	public double dequeue()
 	{
 		
 	}
