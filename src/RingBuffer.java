@@ -6,11 +6,15 @@ public class RingBuffer
 {
 	double[] buffer;
 	int size;
+	int rear;
+	int capacity;
 	
 	public RingBuffer(int capacity)
 	{
+		this.capacity = capacity;
 		this.buffer = new double[capacity];
 		this.size = 0;
+		this.rear = 0;
 	}
 	
 	public int size() //Tyler Sy
@@ -43,11 +47,15 @@ public class RingBuffer
 		return false;
 	}
 	
-	public void enqueue(double x)
-	{
-		
-	}
-	
+	public void enqueue(double x) {
+        if (isFull()) {
+            throw new IllegalStateException("Buffer is full");
+        }
+        buffer[rear] = x;
+        rear = (rear + 1) % capacity; // wrap around if needed
+        size++;
+    }
+
 	public double dequeue()
 	{
 		
