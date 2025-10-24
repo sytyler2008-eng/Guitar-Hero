@@ -1,6 +1,7 @@
 //Tyler Sy and Logan Feistauer, CS3 K, 5th Period
 
 import java.io.*;
+import java.util.*;
 
 public class RingBuffer
 {
@@ -56,6 +57,7 @@ public class RingBuffer
         {
         	first = 0;
         	buffer[first] = x;
+        	size++;
         }
         else
         {
@@ -67,20 +69,28 @@ public class RingBuffer
         		}
         	}
         	buffer[last] = x;
+        	size++;
         }
     }
 
-	public double dequeue() {
-        if (isEmpty()) {
-            throw new NoSuchElementException("Buffer is empty");
+	public double dequeue()
+	{
+        if (isEmpty())
+        {
+            throw new NoSuchElementException();
         }
-        double item = buffer[front];
-        buffer[front] = 0.0; // optional: clear the spot
-        front = (front + 1) % capacity; // wrap around if needed
+        double item = buffer[first];
+        buffer[first] = 0.0;
+        for (int i = buffer.length - 1; i < buffer.length; i--)
+    	{
+    		if (buffer[i] != 0.0)
+    		{
+    			first = i;
+    		}
+    	}
         size--;
         return item;
     }
-	
 	
 	public double peek() //Tyler Sy
 	{
