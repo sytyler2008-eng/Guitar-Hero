@@ -70,10 +70,17 @@ public class RingBuffer
         }
     }
 
-	public double dequeue()
-	{
-		
-	}
+	public double dequeue() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Buffer is empty");
+        }
+        double item = buffer[front];
+        buffer[front] = 0.0; // optional: clear the spot
+        front = (front + 1) % capacity; // wrap around if needed
+        size--;
+        return item;
+    }
+	
 	
 	public double peek() //Tyler Sy
 	{
