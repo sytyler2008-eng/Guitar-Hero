@@ -41,6 +41,8 @@ public class GuitarString
 	
 	public void tic()
 	{
+		double first = ringBuffer.peek();
+		ringBuffer.dequeue();
 		
 	}
 	
