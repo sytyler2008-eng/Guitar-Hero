@@ -46,9 +46,9 @@ public class GuitarString
 		
 	}
 	
-	public double sample()
-	{
-		return 0.0;
+	public double sample() {
+        if (ringBuffer.isEmpty()) return 0.0;
+        return ringBuffer.peek();
 	}
 	
 	public int time()
