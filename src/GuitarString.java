@@ -31,11 +31,11 @@ public class GuitarString
 	{
 		while (!ringBuffer.isEmpty())
 		{
-			ringBuffer.dequeue();
+			ringBuffer.dequeue(); //empties out all the former elements until buffer is empty
 		}
 		for (int i = 0; i < N; i++)
 		{
-			ringBuffer.enqueue(Math.random() - 0.5);
+			ringBuffer.enqueue(Math.random() - 0.5); //fills up the buffer with the new things
 		}
 	}
 	
