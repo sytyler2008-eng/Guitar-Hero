@@ -41,9 +41,11 @@ public class GuitarString
 	
 	public void tic()
 	{
-		double first = ringBuffer.peek();
-		ringBuffer.dequeue();
-		
+		double first = ringBuffer.peek(); //get the first sample
+		ringBuffer.dequeue(); //get rid of the first sample in buffer (this allows us to also get second sample)
+		double second = ringBuffer.peek(); //get the second sample
+		double avg = (first + second) / 2.0; //find the average of the two
+		ringBuffer.enqueue(avg * 0.994); //enqueue avg times decay factor at the end of the buffer
 	}
 	
 	public double sample() {
