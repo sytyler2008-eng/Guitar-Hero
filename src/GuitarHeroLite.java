@@ -12,7 +12,7 @@
 public class GuitarHeroLite {
 
     public static void main(String[] args) {
-    	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
+    	String keyboard = "1234567890-=qwertyuiop[]asdfghjkl;;'zxcvbnm,./ ";
 
 
 		GuitarString[] strings = new GuitarString[keyboard.length()];
