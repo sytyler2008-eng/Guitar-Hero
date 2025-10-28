@@ -4,6 +4,7 @@ public class GuitarString
 {
 	private RingBuffer ringBuffer;
 	private int N;
+	private int ticCount;
 	
 	//first constructor
 	public GuitarString(double frequency)
@@ -15,6 +16,7 @@ public class GuitarString
 		{
 			ringBuffer.enqueue(0.0);
 		}
+		this.ticCount = 0;
 	}
 	
 	//second constructor
@@ -46,6 +48,7 @@ public class GuitarString
 		double second = ringBuffer.peek(); //get the second sample
 		double avg = (first + second) / 2.0; //find the average of the two
 		ringBuffer.enqueue(avg * 0.994); //enqueue avg times decay factor at the end of the buffer
+		ticCount++;
 	}
 	
 	public double sample() {
@@ -55,7 +58,7 @@ public class GuitarString
 	
 	public int time()
 	{
-		return 0;
+		return ticCount;
 	}
 }
 
