@@ -8,9 +8,10 @@
  *
  ****************************************************************************/
 
-public class GuitarHeroLite {
-
-    public static void main(String[] args) {
+public class GuitarHeroLite
+{
+    public static void main(String[] args)
+    {
     	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
 
