@@ -3,16 +3,15 @@
  *  Execution:    java  GuitarHeroLite
  *  Dependencies: StdAudio.java StdDraw.java GuitarString.java
  *
- *  Plays two guitar strings (concert A and concert C) when the user
- *  types the lowercase letters 'a' and 'c', respectively in the 
- *  standard drawing window.
+ *  Plays guitar strings when the user types letter in the standard
+ *  drawing window.
  *
  ****************************************************************************/
 
 public class GuitarHeroLite {
 
     public static void main(String[] args) {
-    	String keyboard = "1234567890-=qwertyuiop[]asdfghjkl;;'zxcvbnm,./ ";
+    	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
 
 		GuitarString[] strings = new GuitarString[keyboard.length()];
@@ -23,10 +22,10 @@ public class GuitarHeroLite {
         }
 
 
-        final double TEXT_POS_X = .2;
-        final double TEXT_POS_Y = .5;
+        final double TEXT_POS_X = 0.5;
+        final double TEXT_POS_Y = 0.5;
         
-        StdDraw.text(TEXT_POS_X, TEXT_POS_Y, "Type 'a' or 'c' to play a note!");
+        StdDraw.text(TEXT_POS_X, TEXT_POS_Y, "Type a keyboard character to play a note!");
 
         while (true) {
             
