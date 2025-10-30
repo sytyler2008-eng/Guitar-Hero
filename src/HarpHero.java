@@ -8,18 +8,17 @@
  *
  ****************************************************************************/
 
-public class GuitarHero
+public class HarpHero
 {
     public static void main(String[] args)
     {
     	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
-
-		GuitarString[] strings = new GuitarString[keyboard.length()];
+		HarpString[] strings = new HarpString[keyboard.length()];
         for (int i = 0; i < keyboard.length(); i++)
         {
             double frequency = 440.0 * Math.pow(1.05956, i - 24);
-            strings[i] = new GuitarString(frequency);
+            strings[i] = new HarpString(frequency);
         }
 
 
@@ -42,7 +41,7 @@ public class GuitarHero
 
             // compute the superposition of all the samples
             double sample = 0.0;
-            for (GuitarString s: strings)
+            for (HarpString s: strings)
             {
             	sample += s.sample();
             }
@@ -51,7 +50,7 @@ public class GuitarHero
             StdAudio.play(sample);
 
             // advance the simulation of each string
-            for (GuitarString s: strings)
+            for (HarpString s: strings)
             {
             	s.tic();
             }
