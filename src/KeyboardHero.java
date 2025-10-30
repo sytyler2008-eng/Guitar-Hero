@@ -5,8 +5,8 @@ public class KeyboardHero
 	public static void main(String[] args)
     {
     	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
-
-
+    	String pos="nn//SS/ ..,,mmn //..,,m //..,,m nn//SS/ ..,,mmn   (S = space)\r\n";
+    	int count=0;
 		GuitarString[] strings = new GuitarString[keyboard.length()];
         for (int i = 0; i < keyboard.length(); i++)
         {
@@ -21,7 +21,9 @@ public class KeyboardHero
         StdDraw.text(TEXT_POS_X, TEXT_POS_Y, "Type a keyboard character to play a note!");
 
         while (true) {
-            
+            //print next value from pos
+        	StdDraw.text(TEXT_POS_X, TEXT_POS_Y,pos.substring(count));
+        	count=count+1;
             // check if the user has typed a key, and, if so, process it
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
@@ -29,6 +31,7 @@ public class KeyboardHero
                 if (index != -1)
                 {
                 	strings[index].pluck();
+                	StdDraw.clear();
                 }
             }
 
