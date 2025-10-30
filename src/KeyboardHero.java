@@ -5,7 +5,7 @@ public class KeyboardHero
 	public static void main(String[] args)
     {
     	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
-    	String pos="nn//SS/ ..,,mmn //..,,m //..,,m nn//SS/ ..,,mmn   (S = space)\r\n";
+    	String pos="nn//  /..,,mmn //..,,m //..,,m nn//  /..,,mmn";
     	int count=0;
 		GuitarString[] strings = new GuitarString[keyboard.length()];
         for (int i = 0; i < keyboard.length(); i++)
@@ -18,23 +18,31 @@ public class KeyboardHero
         final double TEXT_POS_X = 0.5;
         final double TEXT_POS_Y = 0.5;
         
-        StdDraw.text(TEXT_POS_X, TEXT_POS_Y, "Type a keyboard character to play a note!");
+       
 
         while (true) {
             //print next value from pos
-        	StdDraw.text(TEXT_POS_X, TEXT_POS_Y,pos.substring(count));
-        	count=count+1;
+        	
+       
             // check if the user has typed a key, and, if so, process it
             if (StdDraw.hasNextKeyTyped()) {
+     
+                
+            	
                 char key = StdDraw.nextKeyTyped();
                 int index = keyboard.indexOf(key);
                 if (index != -1)
                 {
                 	strings[index].pluck();
-                	StdDraw.clear();
+                    
                 }
-            }
+                if(pos.length()>count)
+            	{
+	                StdDraw.text(.5, .5, pos.charAt(count) + "");
+	            	count++;
+            	}
 
+            }
             // compute the superposition of all the samples
             double sample = 0.0;
             for (GuitarString s: strings)
