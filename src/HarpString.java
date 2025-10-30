@@ -12,7 +12,7 @@ public class HarpString
 		int samplingRate = 44100; //given sampling rate
 		this.N = (int)(samplingRate / frequency); //capacity is sample rate divded by frequency
 		this.ringBuffer = new RingBuffer(N * 2); //make a new RingBuffer object with this capacity
-		for (int i = 0; i < N; i++)
+		for (int i = 0; i < N * 2; i++)
 		{
 			ringBuffer.enqueue(0.0);
 		}
@@ -47,11 +47,12 @@ public class HarpString
 		ringBuffer.dequeue(); //get rid of the first sample in buffer (this allows us to also get second sample)
 		double second = ringBuffer.peek(); //get the second sample
 		double avg = (first + second) / 2.0; //find the average of the two
-		ringBuffer.enqueue(-(avg * 0.994)); //enqueue avg times decay factor at the end of the buffer
+		ringBuffer.enqueue(avg * 0.994 / -1.0); //enqueue avg times decay factor at the end of the buffer
 		ticCount++;
 	}
 	
-	public double sample() {
+	public double sample()
+	{
         if (ringBuffer.isEmpty()) return 0.0;
         return ringBuffer.peek();
 	}
