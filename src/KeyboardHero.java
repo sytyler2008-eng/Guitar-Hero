@@ -38,6 +38,7 @@ public class KeyboardHero
                 }
                 if(pos.length()>count)
             	{
+                	StdDraw.clear();
 	                StdDraw.text(.5, .5, pos.charAt(count) + "");
 	            	count++;
             	}
