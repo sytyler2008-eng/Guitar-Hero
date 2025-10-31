@@ -1,16 +1,16 @@
 //Tyler Sy and Logan Feistauer, CS3 K, 5th Period
 
-public class HarpString
+public class DrumTap
 {
 	private RingBuffer ringBuffer;
 	private int N;
 	private int ticCount;
 	
 	//first constructor
-	public HarpString(double frequency)
+	public DrumTap(double frequency)
 	{
 		int samplingRate = 44100; //given sampling rate
-		this.N = (int)(samplingRate / frequency) / 2; //capacity is sample rate divded by frequency
+		this.N = (int)(samplingRate / frequency); //capacity is sample rate divded by frequency
 		this.ringBuffer = new RingBuffer(N); //make a new RingBuffer object with this capacity
 		for (int i = 0; i < N; i++)
 		{
@@ -20,13 +20,12 @@ public class HarpString
 	}
 	
 	//second constructor
-	public HarpString(double[] init)
+	public DrumTap(double[] init)
 	{
-		this.N = init.length;
-		this.ringBuffer = new RingBuffer(N);
-		for (double d: init)
+		this.ringBuffer = new RingBuffer(init.length);
+		for (int i = 0; i < init.length; i++)
 		{
-			ringBuffer.enqueue(d);
+			ringBuffer.buffer[i] = init[i];
 		}
 	}
 	
@@ -47,13 +46,12 @@ public class HarpString
 		double first = ringBuffer.peek(); //get the first sample
 		ringBuffer.dequeue(); //get rid of the first sample in buffer (this allows us to also get second sample)
 		double second = ringBuffer.peek(); //get the second sample
-		double karplus = (-(first + second) / 2.0) * 0.989; //find the average of the two
-		ringBuffer.enqueue(karplus); //enqueue avg times decay factor at the end of the buffer
+		double avg = (first + second) / 2.0; //find the average of the two
+		ringBuffer.enqueue(avg * 1.0); //enqueue avg times decay factor at the end of the buffer
 		ticCount++;
 	}
 	
-	public double sample()
-	{
+	public double sample() {
         if (ringBuffer.isEmpty()) return 0.0;
         return ringBuffer.peek();
 	}

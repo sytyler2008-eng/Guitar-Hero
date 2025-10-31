@@ -22,7 +22,8 @@ public class GuitarString
 	//second constructor
 	public GuitarString(double[] init)
 	{
-		this.ringBuffer = new RingBuffer(init.length);
+		this.N = init.length;
+		this.ringBuffer = new RingBuffer(N);
 		for (int i = 0; i < init.length; i++)
 		{
 			ringBuffer.buffer[i] = init[i];
@@ -46,8 +47,8 @@ public class GuitarString
 		double first = ringBuffer.peek(); //get the first sample
 		ringBuffer.dequeue(); //get rid of the first sample in buffer (this allows us to also get second sample)
 		double second = ringBuffer.peek(); //get the second sample
-		double avg = (first + second) / 2.0; //find the average of the two
-		ringBuffer.enqueue(avg * 0.994); //enqueue avg times decay factor at the end of the buffer
+		double karplus = ((first + second) / 2.0) * 0.994; //find the average of the two
+		ringBuffer.enqueue(karplus); //enqueue avg times decay factor at the end of the buffer
 		ticCount++;
 	}
 	
@@ -61,6 +62,4 @@ public class GuitarString
 		return ticCount;
 	}
 }
-
-
 

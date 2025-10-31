@@ -1,24 +1,16 @@
-/*****************************************************************************
- *  Compilation:  javac GuitarHeroLite.java
- *  Execution:    java  GuitarHeroLite
- *  Dependencies: StdAudio.java StdDraw.java GuitarString.java
- *
- *  Plays guitar strings when the user types letter in the standard
- *  drawing window.
- *
- ****************************************************************************/
+//Tyler Sy and Logan Feistauer, CS3 K, 5th Period
 
-public class HarpHero
+public class DrumHero
 {
     public static void main(String[] args)
     {
     	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
-		HarpString[] strings = new HarpString[keyboard.length()];
+		GuitarString[] strings = new GuitarString[keyboard.length()];
         for (int i = 0; i < keyboard.length(); i++)
         {
             double frequency = 440.0 * Math.pow(1.05956, i - 24);
-            strings[i] = new HarpString(frequency);
+            strings[i] = new GuitarString(frequency);
         }
 
         final double TEXT_POS_X = 0.5;
@@ -40,7 +32,7 @@ public class HarpHero
 
             // compute the superposition of all the samples
             double sample = 0.0;
-            for (HarpString s: strings)
+            for (GuitarString s: strings)
             {
             	sample += s.sample();
             }
@@ -49,7 +41,7 @@ public class HarpHero
             StdAudio.play(sample);
 
             // advance the simulation of each string
-            for (HarpString s: strings)
+            for (GuitarString s: strings)
             {
             	s.tic();
             }
@@ -58,3 +50,5 @@ public class HarpHero
     }
 
 }
+
+
