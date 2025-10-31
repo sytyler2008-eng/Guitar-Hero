@@ -5,7 +5,7 @@ public class KeyboardHero
 	public static void main(String[] args)
     {
     	String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
-    	String pos="nn//  /..,,mmn //..,,m //..,,m nn//  /..,,mmn";
+    	String pos="nn//  /..,,mmn //..,,m //..,,mnn//  /..,,mmn";
     	int count=0;
 		GuitarString[] strings = new GuitarString[keyboard.length()];
         for (int i = 0; i < keyboard.length(); i++)
@@ -20,47 +20,46 @@ public class KeyboardHero
         
        
 
-        while (true) {
+        while (true)
+        {
             //print next value from pos
-        	
        
             // check if the user has typed a key, and, if so, process it
-            if (StdDraw.hasNextKeyTyped()) {
-     
-                
-            	
+            if (StdDraw.hasNextKeyTyped())
+            {
                 char key = StdDraw.nextKeyTyped();
                 int index = keyboard.indexOf(key);
                 if (index != -1)
                 {
                 	strings[index].pluck();
-                    
                 }
-                if(pos.length()>count)
-            	{
-                	StdDraw.clear();
-	                StdDraw.text(.5, .5, pos.charAt(count) + "");
-	            	count++;
+                if (pos.length() > count)
+                {
+                	if (key == pos.charAt(count))
+                	{
+		                StdDraw.clear();
+		                StdDraw.text(.5, .5, pos.charAt(count + 1) + "");
+		            	count++;
+                	}
             	}
-
             }
-            // compute the superposition of all the samples
-            double sample = 0.0;
-            for (GuitarString s: strings)
-            {
-            	sample += s.sample();
-            }
-
-            // send the result to standard audio
-            StdAudio.play(sample);
-
-            // advance the simulation of each string
-            for (GuitarString s: strings)
-            {
-            	s.tic();
-            }
-        }
         
+	        // compute the superposition of all the samples
+	        double sample = 0.0;
+	        for (GuitarString s: strings)
+	        {
+	        	sample += s.sample();
+	        }
+	
+	        // send the result to standard audio
+	        StdAudio.play(sample);
+	
+	        // advance the simulation of each string
+	        for (GuitarString s: strings)
+	        {
+	        	s.tic();
+	        }
+        }
     }
 }
 
